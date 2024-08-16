@@ -17,7 +17,7 @@ namespace Application.Queries.Project.GetListProject
 
         public async Task<GetListProjectQueryResult> Handle(GetListProjectQuery request, CancellationToken cancellationToken)
         {
-            var projects = await context.Project
+            var projects = await context.Projects
                            .Include(t => t.Tasks.Where(t => t.DeletedAt == null))
                            .Where(p => p.DeletedAt == null).ToListAsync();
 

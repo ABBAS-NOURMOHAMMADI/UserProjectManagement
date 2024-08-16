@@ -2,13 +2,14 @@
 using Application.Commands.Task.DeleteTask;
 using Application.Commands.Task.UpdateTask;
 using Application.Queries.Task.GetListTask;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace UserProjectManagement.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class TaskController : BaseController
     {
         private readonly ILogger<TaskController> _logger;

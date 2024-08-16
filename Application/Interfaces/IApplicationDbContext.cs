@@ -6,7 +6,8 @@ namespace Domain.Interfaces
 {
     public interface IApplicationDbContext : IDisposable
     {
-        DbSet<Project> Project { get; set; }
+        DbSet<User> Users { get; set; }
+        DbSet<Project> Projects { get; set; }
         DbSet<Entities.Task> Tasks { get; set; }
 
         ChangeTracker GetChangeTracker();

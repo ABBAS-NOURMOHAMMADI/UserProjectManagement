@@ -16,7 +16,7 @@ namespace Application.Commands.Project.DeleteProject
 
         public async Task<bool> Handle(DeleteProjectCommand request, CancellationToken cancellationToken)
         {
-            var project = await context.Project.FindAsync(request.ProjectId);
+            var project = await context.Projects.FindAsync(request.ProjectId);
 
             if (project is null || project.DeletedAt.HasValue)
                 throw new Exception("project not found");
@@ -24,7 +24,7 @@ namespace Application.Commands.Project.DeleteProject
             project.DeletedAt = DateTime.UtcNow;
             project.DeletedBy = currentUserService.UserId;
 
-            context.Project.Update(project);
+            context.Projects.Update(project);
             await context.SaveChangesAsync();
 
             return true;

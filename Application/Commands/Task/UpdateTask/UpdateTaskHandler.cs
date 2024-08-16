@@ -18,7 +18,7 @@ namespace Application.Commands.Task.UpdateTask
 
         public async Task<TaskDto> Handle(UpdateTaskCommand request, CancellationToken cancellationToken)
         {
-            var project = await context.Project.FindAsync(request.ProjectId);
+            var project = await context.Projects.FindAsync(request.ProjectId);
             if (project is null || project.DeletedAt.HasValue)
                 throw new Exception("project not found");
 
@@ -33,7 +33,7 @@ namespace Application.Commands.Task.UpdateTask
             {
                 task.ModifiedAt = DateTime.UtcNow;
                 task.ModifiedBy = currentUserService.UserId;
-                context.Project.Update(project);
+                context.Projects.Update(project);
                 await context.SaveChangesAsync();
             }
 

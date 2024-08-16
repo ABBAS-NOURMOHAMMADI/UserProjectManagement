@@ -11,7 +11,8 @@ namespace Infrastructure.Persistence
     {
         protected ICurrentUserService currentUserService;
 
-        public DbSet<Project> Project { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Project> Projects { get; set; }
         public DbSet<Domain.Entities.Task> Tasks { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ICurrentUserService currentUserService = null) : base(options)
@@ -25,6 +26,7 @@ namespace Infrastructure.Persistence
 
             modelBuilder.ApplyConfiguration(new ProjectConfiguration());
             modelBuilder.ApplyConfiguration(new TaskConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
         }
 
         public ChangeTracker GetChangeTracker() => this.ChangeTracker;

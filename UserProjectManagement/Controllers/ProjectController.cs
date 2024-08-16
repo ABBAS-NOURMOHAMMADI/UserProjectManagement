@@ -2,13 +2,14 @@
 using Application.Commands.Project.DeleteProject;
 using Application.Commands.Project.UpdateProject;
 using Application.Queries.Project.GetListProject;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace UserProjectManagement.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class ProjectController : BaseController
     {
         private readonly ILogger<ProjectController> _logger;

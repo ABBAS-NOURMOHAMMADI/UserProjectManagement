@@ -18,7 +18,7 @@ namespace Application.Queries.Task.GetListTask
         public async Task<GetListTaskQueryResult> Handle(GetListTaskQuery request,
                                            CancellationToken cancellationToken)
         {
-            var project = await context.Project.FindAsync(request.ProjectId);
+            var project = await context.Projects.FindAsync(request.ProjectId);
 
             if (project is null || project.DeletedAt.HasValue)
                 throw new Exception("project not found");

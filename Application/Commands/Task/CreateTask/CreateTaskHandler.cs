@@ -15,7 +15,7 @@ namespace Application.Commands.Task.CreateTask
 
         public async Task<TaskDto> Handle(CreateTaskCommand request, CancellationToken cancellationToken)
         {
-            var project = await context.Project.FindAsync(request.ProjectId);
+            var project = await context.Projects.FindAsync(request.ProjectId);
 
             if (project is null || project.DeletedAt.HasValue)
                 throw new Exception("project not found");
